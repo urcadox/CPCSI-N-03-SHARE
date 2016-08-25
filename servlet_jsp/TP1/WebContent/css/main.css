@@ -12,3 +12,44 @@
 	display: table-cell;
 	padding: 5px;
 }
+
+.logo{
+	width: 100%;
+}
+
+.horizontalFlexContainer{
+	display: flex;
+	height: 100%;
+	
+}
+
+.menuContainer{
+	flex-basis:300px;
+}
+
+.generalContainer{
+	flex-grow:1;
+	background-color: silver;
+}
+
+.asideContainer{
+	flex-basis:50px;
+	background-color: grey;
+}
+
+.buttonMenu{
+	text-align: center;
+	font-style: normal;
+	font-size: x-large;
+	text-decoration: none;
+	color:grey;
+}
+
+.buttonMenu:HOVER{
+	background-color: grey;
+	color: white;
+}
+
+.clearLink{
+	text-decoration: none;
+}

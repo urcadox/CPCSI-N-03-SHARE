@@ -3,13 +3,8 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="./css/main.css" rel="stylesheet" type="text/css" />
-<title>Insert title here</title>
-</head>
-<body>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags" %> 
+<t:template>
 	<div class="tableContainer">
 		<c:forEach items="${CrowdFundingList}" var="crowdFundingDTO"
 			varStatus="loopStatus">
@@ -33,5 +28,4 @@
 			</div>
 		</c:forEach>
 	</div>
-</body>
-</html>
+</t:template>
