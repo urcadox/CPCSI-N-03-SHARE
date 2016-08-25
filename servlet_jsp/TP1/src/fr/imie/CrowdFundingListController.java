@@ -14,14 +14,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class CrowdFundingList
  */
-@WebServlet("/CrowdFundingList")
-public class CrowdFundingList extends HttpServlet {
+@WebServlet("/CrowdFundingListController")
+public class CrowdFundingListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CrowdFundingList() {
+    public CrowdFundingListController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,7 +30,7 @@ public class CrowdFundingList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		// début commentaire archi : ce bloc devrait être une classe métier/business et aucun aobjet ne devrait être en session
 		List<CrowdFundingDTO> CFList = new ArrayList<CrowdFundingDTO>();
 		CrowdFundingDTO CF1 = new CrowdFundingDTO();
 		CF1.setName("barmad");
@@ -48,22 +48,12 @@ public class CrowdFundingList extends HttpServlet {
 		CF3.setAim(32000000);
 		CFList.add(CF3);
 		request.getSession().setAttribute("CrowdFundingList",CFList);
-
-		Writer writer=response.getWriter();
-		writer.append("<html>");
-		writer.append("<body>");
-		Integer numLigne=0;
-		for (CrowdFundingDTO crowdFundingDTO : CFList) {
-			writer.append("<form method=\"post\"><button name=\"numLigne\" value=\""+numLigne+"\">+</button> ");
-			request.setAttribute("CrowdFundingGoal", crowdFundingDTO.getGoal());
-			request.setAttribute("CrowdFundingName", crowdFundingDTO.getName());
-			request.setAttribute("CrowdFundingAim", crowdFundingDTO.getAim());
-			request.getRequestDispatcher("/CrowdFundingView").include(request, response);
-			writer.append("</form>");
-			numLigne++;
-		}
-		writer.append("</body>");
-		writer.append("</html>");
+		// fin commentaire archi 
+		
+		
+		request.setAttribute("CrowdFundingList",CFList);	
+		request.getRequestDispatcher("/WEB-INF/CrowdFoundingList.jsp").forward(request, response);
+		
 		
 
 		

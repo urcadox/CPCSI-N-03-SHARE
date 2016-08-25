@@ -1,0 +1,14 @@
+@CHARSET "UTF-8";
+
+.tableContainer{
+	display: table;
+}
+
+.tableRow{
+	display: table-row;
+}
+
+.tableRow div{
+	display: table-cell;
+	padding: 5px;
+}
