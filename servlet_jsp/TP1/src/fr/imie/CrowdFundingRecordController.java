@@ -1,7 +1,6 @@
 package fr.imie;
 
 import java.io.IOException;
-import java.io.Writer;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class CrowdFundingDetail
+ * Servlet implementation class CrowdFundingRecordController
  */
-@WebServlet("/CrowdFundingDetailView")
-public class CrowdFundingDetailView extends HttpServlet {
+@WebServlet("/CrowdFundingRecordController")
+public class CrowdFundingRecordController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CrowdFundingDetailView() {
+    public CrowdFundingRecordController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,8 +28,6 @@ public class CrowdFundingDetailView extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//CrowdFundingDTO current = (CrowdFundingDTO) request.getSession().getAttribute("CrowdFundingCurrent");
 		CrowdFundingDTO current = null;
 		List<CrowdFundingDTO> CFList = (List<CrowdFundingDTO>) request.getSession().getAttribute("CrowdFundingList");
 		for (CrowdFundingDTO crowdFundingDTO : CFList) {
@@ -38,19 +35,8 @@ public class CrowdFundingDetailView extends HttpServlet {
 				current=crowdFundingDTO;
 			}
 		}
-		
-		
-		Writer writer = response.getWriter();
-		writer.append("<html>");
-		writer.append("<body>");
-		if(current==null){
-			writer.append("crowdfunding non trouvé");
-		}else{
-			writer.append(current.getName()).append("</br>");
-			writer.append(current.getGoal().toString()).append("</br>");
-		}
-		writer.append("</body>");
-		writer.append("</html>");
+		request.setAttribute("CrowdFundingRecord", current);
+		request.getRequestDispatcher("/WEB-INF/CrowdFundingRecord.jsp").forward(request, response);
 	}
 
 	/**

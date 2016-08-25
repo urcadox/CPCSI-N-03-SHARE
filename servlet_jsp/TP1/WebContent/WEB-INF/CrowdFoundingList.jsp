@@ -1,7 +1,8 @@
 <%@page import="java.util.List"%>
 <%@page import="fr.imie.CrowdFundingDTO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -10,35 +11,27 @@
 </head>
 <body>
 	<div class="tableContainer">
-
-		<%
-			List<CrowdFundingDTO> CFList = (List<CrowdFundingDTO>) request.getAttribute("CrowdFundingList");
-			Integer numLigne = 0;
-			for (CrowdFundingDTO crowdFundingDTO : CFList) {
-		%>
-		<div class="tableRow">
-
-			<div>
-				<form method="post">
-					<button name="numLigne" value="<%=numLigne%>">+</button>
-				</form>
+		<c:forEach items="${CrowdFundingList}" var="crowdFundingDTO"
+			varStatus="loopStatus">
+			<div class="tableRow">
+				<div>
+					<form method="post">
+						<button name="numLigne" value="${loopStatus.index}">+</button>
+					</form>
+				</div>
+				<div>
+					<span><c:out value="${crowdFundingDTO.name}"></c:out></span>
+				</div>
+				<div>
+					<span style="font-style: italic;"><c:out
+							value="${crowdFundingDTO.goal}"></c:out></span>
+				</div>
+				<div>
+					<meter min="0" max="${crowdFundingDTO.goal}"
+						value="${crowdFundingDTO.goal-crowdFundingDTO.aim}"></meter>
+				</div>
 			</div>
-			<div>
-				<span><%=crowdFundingDTO.getName()%></span>
-			</div>
-			<div>
-				<span style="font-style: italic;"><%=crowdFundingDTO.getGoal()%></span>
-			</div>
-			<div>
-				<meter min="0" max="<%=crowdFundingDTO.getGoal()%>"
-					value="<%=crowdFundingDTO.getGoal() - crowdFundingDTO.getAim()%>"></meter>
-			</div>
-
-		</div>
-		<%
-			numLigne++;
-			}
-		%>
+		</c:forEach>
 	</div>
 </body>
 </html>

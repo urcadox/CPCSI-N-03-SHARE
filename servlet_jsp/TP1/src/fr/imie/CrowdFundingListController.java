@@ -69,7 +69,7 @@ public class CrowdFundingListController extends HttpServlet {
 		List<CrowdFundingDTO> CFList =(List<CrowdFundingDTO>) request.getSession().getAttribute("CrowdFundingList");
 		CrowdFundingDTO current = CFList.get(numLigne);
 		//request.getSession().setAttribute("CrowdFundingCurrent", current);
-		response.sendRedirect("./CrowdFundingDetailView?name="+current.getName());
+		response.sendRedirect("./CrowdFundingRecordController?name="+current.getName());
 	}
 
 }

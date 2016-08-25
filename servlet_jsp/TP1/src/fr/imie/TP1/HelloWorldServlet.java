@@ -1,4 +1,4 @@
-package fr.imie;
+package fr.imie.TP1;
 
 import java.io.IOException;
 import java.util.Date;
