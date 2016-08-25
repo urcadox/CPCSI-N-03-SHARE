@@ -1,8 +1,6 @@
 package fr.imie;
 
 import java.io.IOException;
-import java.io.Writer;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class CrowdFundingList
+ * Servlet implementation class LoginController
  */
-@WebServlet("/CrowdFundingListController")
-public class CrowdFundingListController extends HttpServlet {
+@WebServlet("/LoginController")
+public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CrowdFundingListController() {
+    public LoginController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,14 +28,8 @@ public class CrowdFundingListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.setAttribute("CrowdFundingList",request.getSession().getAttribute("CrowdFundingList"));	
-		request.getRequestDispatcher("/WEB-INF/CrowdFoundingList.jsp").forward(request, response);
-		
-		
-
-		
-		
+		// TODO Auto-generated method stub
+		request.getRequestDispatcher("/WEB-INF/Login.jsp").forward(request, response);
 	}
 
 	/**
@@ -45,11 +37,19 @@ public class CrowdFundingListController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Integer numLigne = Integer.parseInt(request.getParameter("numLigne"));
-		List<CrowdFundingDTO> CFList =(List<CrowdFundingDTO>) request.getSession().getAttribute("CrowdFundingList");
-		CrowdFundingDTO current = CFList.get(numLigne);
-		//request.getSession().setAttribute("CrowdFundingCurrent", current);
-		response.sendRedirect("./CrowdFundingRecordController?name="+current.getName());
+		String login = request.getParameter("login");
+		String password = request.getParameter("passw");
+		List<UserDTO> userDTOs = (List<UserDTO>)request.getSession().getAttribute("UserList");
+		Boolean authentificationSucced = false;
+		for (UserDTO userDTO : userDTOs) {
+			if(userDTO.getLogin().compareTo(login)==0 && userDTO.getPassw().compareTo(password)==0){
+				authentificationSucced=true;
+				request.getSession().setAttribute("logedUser", userDTO);
+			}
+		}
+		if(authentificationSucced==false){
+			doGet(request, response);
+		}
 	}
 
 }
