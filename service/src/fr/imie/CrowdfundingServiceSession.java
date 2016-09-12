@@ -1,16 +1,18 @@
-package fr.imie.crowdfunding;
+package fr.imie;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 
 import fr.imie.CrowdFundingDTO;
 import java.io.Serializable;
 
 @SessionScoped
-public class CrowdfundingService implements Serializable, ICrowdFundingService  {
+@Mock
+public class CrowdfundingServiceSession implements Serializable, ICrowdFundingService  {
 
 	/**
 	 * 

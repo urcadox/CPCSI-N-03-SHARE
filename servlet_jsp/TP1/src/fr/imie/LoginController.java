@@ -3,14 +3,16 @@ package fr.imie;
 import java.io.IOException;
 import java.util.List;
 
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.imie.crowdfunding.IUserService;
+import fr.imie.IUserService;
 
 /**
  * Servlet implementation class LoginController
@@ -19,7 +21,8 @@ import fr.imie.crowdfunding.IUserService;
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	@Inject private IUserService userService;
+	@Inject @Regular private IUserService userService;
+	@Inject IUserConnectedManagement userConnectedManagement;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -50,7 +53,9 @@ public class LoginController extends HttpServlet {
 		for (UserDTO userDTO : userDTOs) {
 			if(userDTO.getLogin().compareTo(login)==0 && userDTO.getPassw().compareTo(password)==0){
 				authentificationSucced=true;
-				request.getSession().setAttribute("logedUser", userDTO);
+				//request.getSession().setAttribute("logedUser", userDTO);
+				userConnectedManagement.setUserDTO(userDTO);
+				
 			}
 		}
 		if(authentificationSucced==false){

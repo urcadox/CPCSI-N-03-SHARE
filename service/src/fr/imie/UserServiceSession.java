@@ -1,4 +1,4 @@
-package fr.imie.crowdfunding;
+package fr.imie;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -6,10 +6,12 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 
 import fr.imie.UserDTO;
 
 @SessionScoped
+@Mock
 public class UserServiceSession implements IUserService, Serializable {
 
 	/**

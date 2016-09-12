@@ -1,4 +1,4 @@
-package fr.imie.TP1;
+package fr.imie.TPServlet;
 
 import java.io.IOException;
 

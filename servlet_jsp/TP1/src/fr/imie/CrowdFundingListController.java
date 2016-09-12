@@ -6,13 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.imie.crowdfunding.ICrowdFundingService;
+import fr.imie.ICrowdFundingService;
 
 /**
  * Servlet implementation class CrowdFundingList
@@ -21,7 +22,7 @@ import fr.imie.crowdfunding.ICrowdFundingService;
 public class CrowdFundingListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	@Inject private ICrowdFundingService crowdFundingService;
+	@Inject @Regular private ICrowdFundingService crowdFundingService;
        
     /**
      * @see HttpServlet#HttpServlet()

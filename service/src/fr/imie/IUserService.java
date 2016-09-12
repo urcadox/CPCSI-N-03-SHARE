@@ -1,4 +1,4 @@
-package fr.imie.crowdfunding;
+package fr.imie;
 
 import java.util.List;
 

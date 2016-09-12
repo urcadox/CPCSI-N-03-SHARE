@@ -1,6 +1,8 @@
 package fr.imie;
 
 import java.io.IOException;
+
+import javax.inject.Inject;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -17,6 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebFilter("/*")
 public class SecurityFilter implements Filter {
 
+	@Inject IUserConnectedManagement userConnectedManagement;
+	
 	/**
 	 * Default constructor.
 	 */
@@ -55,17 +59,21 @@ public class SecurityFilter implements Filter {
 			resourceToSecure = false;
 		}
 
-		UserDTO LogedUser = (UserDTO) httpServletRequest.getSession().getAttribute("logedUser");
+		//UserDTO LogedUser = (UserDTO) httpServletRequest.getSession().getAttribute("logedUser");
+		UserDTO LogedUser = userConnectedManagement.getUserDTO();
 		HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 		if (resourceToSecure == false || LogedUser != null) {
 			chain.doFilter(request, response);
-			UserDTO newUser = (UserDTO) httpServletRequest.getSession().getAttribute("logedUser");
+			//UserDTO newUser = (UserDTO) httpServletRequest.getSession().getAttribute("logedUser");
+			UserDTO newUser = userConnectedManagement.getUserDTO();
 			if (LogedUser == null && newUser != null) {
-				String oldUrl = (String) httpServletRequest.getSession().getAttribute("urlAim");
+				//String oldUrl = (String) httpServletRequest.getSession().getAttribute("urlAim");
+				String oldUrl = userConnectedManagement.getAimUrl();
 				httpServletResponse.sendRedirect(oldUrl);
 			}
 		} else {
-			httpServletRequest.getSession().setAttribute("urlAim", url);
+			//httpServletRequest.getSession().setAttribute("urlAim", url);
+			userConnectedManagement.setAimUrl(url);
 			httpServletResponse.sendRedirect("LoginController");
 		}
 	}
