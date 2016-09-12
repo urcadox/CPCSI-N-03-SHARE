@@ -3,11 +3,14 @@ package fr.imie;
 import java.io.IOException;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import fr.imie.crowdfunding.IUserService;
 
 /**
  * Servlet implementation class LoginController
@@ -15,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/LoginController")
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	@Inject private IUserService userService;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -39,7 +44,8 @@ public class LoginController extends HttpServlet {
 		// TODO Auto-generated method stub
 		String login = request.getParameter("login");
 		String password = request.getParameter("passw");
-		List<UserDTO> userDTOs = (List<UserDTO>)request.getSession().getAttribute("UserList");
+		//List<UserDTO> userDTOs = (List<UserDTO>)request.getSession().getAttribute("UserList");
+		List<UserDTO> userDTOs = userService.getAllUsers();
 		Boolean authentificationSucced = false;
 		for (UserDTO userDTO : userDTOs) {
 			if(userDTO.getLogin().compareTo(login)==0 && userDTO.getPassw().compareTo(password)==0){

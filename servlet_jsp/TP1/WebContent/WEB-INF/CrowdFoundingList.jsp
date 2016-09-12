@@ -11,7 +11,7 @@
 			<div class="tableRow">
 				<div>
 					<form method="post">
-						<button name="numLigne" value="${loopStatus.index}">+</button>
+						<button name="idCrowdFunding" value="${crowdFundingDTO.id}">+</button>
 					</form>
 				</div>
 				<div>

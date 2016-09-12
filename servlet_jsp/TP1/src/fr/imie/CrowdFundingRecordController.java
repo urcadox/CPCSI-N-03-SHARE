@@ -3,11 +3,14 @@ package fr.imie;
 import java.io.IOException;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import fr.imie.crowdfunding.ICrowdFundingService;
 
 /**
  * Servlet implementation class CrowdFundingRecordController
@@ -16,6 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 public class CrowdFundingRecordController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	@Inject ICrowdFundingService crowdFundingService;
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -28,13 +33,17 @@ public class CrowdFundingRecordController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		String idString = request.getParameter("id");
+		Integer id = Integer.parseInt(idString);
+		
 		CrowdFundingDTO current = null;
-		List<CrowdFundingDTO> CFList = (List<CrowdFundingDTO>) request.getSession().getAttribute("CrowdFundingList");
-		for (CrowdFundingDTO crowdFundingDTO : CFList) {
-			if (crowdFundingDTO.getName().compareTo(request.getParameter("name"))==0){
+		for (CrowdFundingDTO crowdFundingDTO : crowdFundingService.getAllCrowdFunfingDTO()) {
+			if(crowdFundingDTO.getId().equals(id)){
 				current=crowdFundingDTO;
 			}
 		}
+		
 		request.setAttribute("CrowdFundingRecord", current);
 		request.getRequestDispatcher("/WEB-INF/CrowdFundingRecord.jsp").forward(request, response);
 	}

@@ -2,6 +2,7 @@ package fr.imie;
 
 public class CrowdFundingDTO {
 
+	private Integer id;
 	private String name;
 	private Integer goal;
 	private Integer aim;
@@ -23,5 +24,12 @@ public class CrowdFundingDTO {
 	public void setAim(Integer aim) {
 		this.aim = aim;
 	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
 	
 }
