@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 public class CrowdFundingListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	@EJB(beanName="CrowdFundingService") private ICrowdFundingService crowdFundingService;
+	@EJB(beanName="CrowdFundingServiceORM") private ICrowdFundingService crowdFundingService;
        
     /**
      * @see HttpServlet#HttpServlet()
