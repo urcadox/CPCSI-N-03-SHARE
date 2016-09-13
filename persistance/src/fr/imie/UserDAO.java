@@ -84,6 +84,7 @@ public class UserDAO implements IUserDAO, ConnectionSupport {
 		UserDTO retour;
 		retour = new UserDTO();
 
+		retour.setId(resultSet.getInt("id"));
 		retour.setLogin(resultSet.getString("login"));
 		retour.setPassw(resultSet.getString("mdp"));
 

@@ -79,7 +79,7 @@ public class CrowdFundingDAO implements ICrowdFundingDAO,ConnectionSupport {
 	private CrowdFundingDTO buildDTOFromResultset(ResultSet resultSet)  throws SQLException {
 		CrowdFundingDTO retour;
 		retour = new CrowdFundingDTO();
-
+		retour.setId(resultSet.getInt("id"));
 		retour.setName(resultSet.getString("nom"));
 		retour.setGoal(resultSet.getInt("objectif"));
 
