@@ -1,19 +1,13 @@
 package fr.imie;
 
 import java.io.IOException;
-import java.io.Writer;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.inject.Inject;
-import javax.inject.Named;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import fr.imie.ICrowdFundingService;
 
 /**
  * Servlet implementation class CrowdFundingList
@@ -22,7 +16,7 @@ import fr.imie.ICrowdFundingService;
 public class CrowdFundingListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	@Inject @Regular private ICrowdFundingService crowdFundingService;
+	@EJB(beanName="CrowdFundingService") private ICrowdFundingService crowdFundingService;
        
     /**
      * @see HttpServlet#HttpServlet()

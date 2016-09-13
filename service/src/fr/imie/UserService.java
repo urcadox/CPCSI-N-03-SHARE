@@ -3,12 +3,17 @@ package fr.imie;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-@RequestScoped
-@Regular
+@Dependent
+@Default
+@Stateless
 public class UserService implements IUserService {
 
 	@Inject IUserDAO userDAO;

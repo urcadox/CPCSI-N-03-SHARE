@@ -5,13 +5,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.ejb.Stateful;
 import javax.enterprise.context.SessionScoped;
+import javax.enterprise.inject.Alternative;
 import javax.inject.Named;
 
 import fr.imie.UserDTO;
 
 @SessionScoped
-@Mock
+@Alternative
+@Stateful
 public class UserServiceSession implements IUserService, Serializable {
 
 	/**

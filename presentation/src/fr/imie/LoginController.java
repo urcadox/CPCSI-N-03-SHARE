@@ -3,6 +3,7 @@ package fr.imie;
 import java.io.IOException;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -21,8 +22,8 @@ import fr.imie.IUserService;
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	@Inject @Regular private IUserService userService;
-	@Inject IUserConnectedManagement userConnectedManagement;
+	@EJB(beanName="UserService") private IUserService userService;
+	@Inject private IUserConnectedManagement userConnectedManagement;
        
     /**
      * @see HttpServlet#HttpServlet()

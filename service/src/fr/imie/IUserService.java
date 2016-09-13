@@ -2,8 +2,9 @@ package fr.imie;
 
 import java.util.List;
 
-import fr.imie.UserDTO;
+import javax.ejb.Local;
 
+@Local
 public interface IUserService {
 	public List<UserDTO> getAllUsers();
 
