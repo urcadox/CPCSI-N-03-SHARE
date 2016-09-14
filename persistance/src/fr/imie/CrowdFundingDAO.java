@@ -19,16 +19,16 @@ public class CrowdFundingDAO implements ICrowdFundingDAO,ConnectionSupport {
 	private Connection connection;
 	
 	@Override
-	public List<CrowdFundingDTO> getCrowdFundings() throws SQLException {
+	public List<CrowdFundingEntity> getCrowdFundings() throws SQLException {
 		Statement statement = null;
 		ResultSet resultSet = null;
-		List<CrowdFundingDTO> retour = new ArrayList<CrowdFundingDTO>();
+		List<CrowdFundingEntity> retour = new ArrayList<CrowdFundingEntity>();
 
 		statement = connection.createStatement();
 		resultSet = statement.executeQuery("SELECT id,nom,objectif FROM projet");
 
 		while (resultSet.next()) {
-			CrowdFundingDTO crowdFundingDTO = buildDTOFromResultset(resultSet);
+			CrowdFundingEntity crowdFundingDTO = buildDTOFromResultset(resultSet);
 			retour.add(crowdFundingDTO);
 		}
 
@@ -36,10 +36,10 @@ public class CrowdFundingDAO implements ICrowdFundingDAO,ConnectionSupport {
 	}
 
 	@Override
-	public CrowdFundingDTO addCrowdFundingDTO(CrowdFundingDTO crowdFundingDTOToInsert) throws SQLException {
+	public CrowdFundingEntity addCrowdFundingDTO(CrowdFundingEntity crowdFundingDTOToInsert) throws SQLException {
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
-		CrowdFundingDTO retour = null;
+		CrowdFundingEntity retour = null;
 
 		List<ParamJDBC> paramsList = new ArrayList<ParamJDBC>();
 		if (crowdFundingDTOToInsert.getName() != null) {
@@ -76,9 +76,9 @@ public class CrowdFundingDAO implements ICrowdFundingDAO,ConnectionSupport {
 		return retour;
 	}
 
-	private CrowdFundingDTO buildDTOFromResultset(ResultSet resultSet)  throws SQLException {
-		CrowdFundingDTO retour;
-		retour = new CrowdFundingDTO();
+	private CrowdFundingEntity buildDTOFromResultset(ResultSet resultSet)  throws SQLException {
+		CrowdFundingEntity retour;
+		retour = new CrowdFundingEntity();
 		retour.setId(resultSet.getInt("id"));
 		retour.setName(resultSet.getString("nom"));
 		retour.setGoal(resultSet.getInt("objectif"));

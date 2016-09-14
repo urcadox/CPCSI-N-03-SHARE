@@ -6,6 +6,6 @@ import javax.ejb.Local;
 
 @Local
 public interface IUserService {
-	public List<UserDTO> getAllUsers();
+	public List<UserEntity> getAllUsers();
 
 }

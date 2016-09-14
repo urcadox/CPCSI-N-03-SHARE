@@ -20,7 +20,7 @@ public class CrowdFundingService implements ICrowdFundingService {
 	private @Inject ICrowdFundingDAO crowdFundingDAO;
 	
 	@Override
-	public List<CrowdFundingDTO> getAllCrowdFunfingDTO() {
+	public List<CrowdFundingEntity> getAllCrowdFunfingDTO() {
 		try {
 			return crowdFundingDAO.getCrowdFundings();
 		} catch (SQLException e) {

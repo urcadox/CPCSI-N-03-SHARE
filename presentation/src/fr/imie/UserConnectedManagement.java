@@ -10,16 +10,16 @@ public class UserConnectedManagement implements Serializable, IUserConnectedMana
 	 * 
 	 */
 	private static final long serialVersionUID = 1382068007857245664L;
-	UserDTO userDTO = null;
+	UserEntity userDTO = null;
 	String aimUrl =null;
 
 	@Override
-	public UserDTO getUserDTO() {
+	public UserEntity getUserDTO() {
 		return userDTO;
 	}
 
 	@Override
-	public void setUserDTO(UserDTO userDTO) {
+	public void setUserDTO(UserEntity userDTO) {
 		this.userDTO = userDTO;
 	}
 

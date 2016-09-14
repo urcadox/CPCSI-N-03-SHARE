@@ -1,15 +1,12 @@
 package fr.imie;
 
-import java.sql.SQLException;
 import java.util.List;
 
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.enterprise.context.Dependent;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Default;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 @Dependent
 @Default
@@ -17,13 +14,28 @@ import javax.persistence.EntityManager;
 @Regular
 public class CrowdFundingServiceORM implements ICrowdFundingService {
 
-	private @Inject EntityManager entityManager;
+	private @PersistenceContext EntityManager entityManager;
 
 	@Override
-	public List<CrowdFundingDTO> getAllCrowdFunfingDTO() {
+	public List<CrowdFundingEntity> getAllCrowdFunfingDTO() {
 
-		return entityManager.createNamedQuery("CrowdFundingDTO.findAll").getResultList();
+		List<CrowdFundingEntity> retour = entityManager.createNamedQuery("CrowdFundingEntity.findAll").getResultList();
+		for (CrowdFundingEntity crowdFundingEntity : retour) {
+			this.completeEntity(crowdFundingEntity);
+		}
+		return retour;
 
 	}
+
+	private void completeEntity(CrowdFundingEntity crowdFundingEntity) {
+		Integer aim = crowdFundingEntity.getGoal();
+		for (DonEntity donEntity : crowdFundingEntity.getDons()) {
+			aim-= donEntity.getValue();
+		}
+		crowdFundingEntity.getDons();
+		crowdFundingEntity.setAim(aim);
+		
+	}
+
 
 }

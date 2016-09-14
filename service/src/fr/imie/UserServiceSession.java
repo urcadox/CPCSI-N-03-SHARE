@@ -11,7 +11,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Alternative;
 import javax.inject.Named;
 
-import fr.imie.UserDTO;
+import fr.imie.UserEntity;
 
 @SessionScoped
 @Alternative
@@ -23,22 +23,22 @@ public class UserServiceSession implements IUserService, Serializable {
 	 */
 	private static final long serialVersionUID = -7090459650269456625L;
 	
-	private List<UserDTO> users = new ArrayList<UserDTO>();
+	private List<UserEntity> users = new ArrayList<UserEntity>();
 	
 	@PostConstruct
 	private void init(){
-		UserDTO userDTO1 = new UserDTO();
+		UserEntity userDTO1 = new UserEntity();
 		userDTO1.setLogin("admin");
 		userDTO1.setPassw("admin");
 		users.add(userDTO1);
-		UserDTO userDTO2 = new UserDTO();
+		UserEntity userDTO2 = new UserEntity();
 		userDTO2.setLogin("raymond");
 		userDTO2.setPassw("1234");
 		users.add(userDTO2);
 	}
 	
 	@Override
-	public List<UserDTO> getAllUsers() {
+	public List<UserEntity> getAllUsers() {
 		// TODO Auto-generated method stub
 		return users;
 	}

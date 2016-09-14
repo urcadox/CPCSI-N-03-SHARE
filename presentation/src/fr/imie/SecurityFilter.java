@@ -16,9 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet Filter implementation class SecurityFilter
  */
-@WebFilter("/*")
+@WebFilter("/CrowdFundingGiveController")
 public class SecurityFilter implements Filter {
-
+ 
 	@Inject IUserConnectedManagement userConnectedManagement;
 	
 	/**
@@ -60,19 +60,14 @@ public class SecurityFilter implements Filter {
 		}
 
 		//UserDTO LogedUser = (UserDTO) httpServletRequest.getSession().getAttribute("logedUser");
-		UserDTO LogedUser = userConnectedManagement.getUserDTO();
+		UserEntity LogedUser = userConnectedManagement.getUserDTO();
 		HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 		if (resourceToSecure == false || LogedUser != null) {
 			chain.doFilter(request, response);
-			//UserDTO newUser = (UserDTO) httpServletRequest.getSession().getAttribute("logedUser");
-			UserDTO newUser = userConnectedManagement.getUserDTO();
-			if (LogedUser == null && newUser != null) {
-				//String oldUrl = (String) httpServletRequest.getSession().getAttribute("urlAim");
-				String oldUrl = userConnectedManagement.getAimUrl();
-				httpServletResponse.sendRedirect(oldUrl);
-			}
+
 		} else {
 			//httpServletRequest.getSession().setAttribute("urlAim", url);
+			System.out.println("save ".concat(url));
 			userConnectedManagement.setAimUrl(url);
 			httpServletResponse.sendRedirect("LoginController");
 		}

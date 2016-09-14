@@ -10,7 +10,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Alternative;
 import javax.inject.Named;
 
-import fr.imie.CrowdFundingDTO;
+import fr.imie.CrowdFundingEntity;
 import java.io.Serializable;
 
 @SessionScoped
@@ -24,28 +24,28 @@ public class CrowdfundingServiceSession implements Serializable, ICrowdFundingSe
 	 */
 	private static final long serialVersionUID = -6030133929842166127L;
 	
-	List<CrowdFundingDTO> crowdFundings = new ArrayList<CrowdFundingDTO>();
+	List<CrowdFundingEntity> crowdFundings = new ArrayList<CrowdFundingEntity>();
 	
 	@Override
-	public List<CrowdFundingDTO> getAllCrowdFunfingDTO() {
+	public List<CrowdFundingEntity> getAllCrowdFunfingDTO() {
 		return crowdFundings;
 	}
 	
 	@PostConstruct
 	private void init(){
-		CrowdFundingDTO CF1 = new CrowdFundingDTO();
+		CrowdFundingEntity CF1 = new CrowdFundingEntity();
 		CF1.setName("barmad");
 		CF1.setGoal(100000);
 		CF1.setAim(100000);
 		CF1.setId(1);
 		crowdFundings.add(CF1);
-		CrowdFundingDTO CF2 = new CrowdFundingDTO();
+		CrowdFundingEntity CF2 = new CrowdFundingEntity();
 		CF2.setName("BYOS");
 		CF2.setGoal(1200000);
 		CF2.setAim(198000);
 		CF2.setId(2);
 		crowdFundings.add(CF2);
-		CrowdFundingDTO CF3 = new CrowdFundingDTO();
+		CrowdFundingEntity CF3 = new CrowdFundingEntity();
 		CF3.setName("FCN");
 		CF3.setGoal(35000000);
 		CF3.setAim(32000000);

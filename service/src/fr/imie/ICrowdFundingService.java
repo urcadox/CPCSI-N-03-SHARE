@@ -4,10 +4,10 @@ import java.util.List;
 
 import javax.ejb.Local;
 
-import fr.imie.CrowdFundingDTO;
+import fr.imie.CrowdFundingEntity;
 
 @Local
 public interface ICrowdFundingService {
-	public List<CrowdFundingDTO> getAllCrowdFunfingDTO();
+	public List<CrowdFundingEntity> getAllCrowdFunfingDTO();
 	
 }

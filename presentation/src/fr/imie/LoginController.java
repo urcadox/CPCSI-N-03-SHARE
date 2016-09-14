@@ -49,18 +49,20 @@ public class LoginController extends HttpServlet {
 		String login = request.getParameter("login");
 		String password = request.getParameter("passw");
 		//List<UserDTO> userDTOs = (List<UserDTO>)request.getSession().getAttribute("UserList");
-		List<UserDTO> userDTOs = userService.getAllUsers();
+		List<UserEntity> userDTOs = userService.getAllUsers();
 		Boolean authentificationSucced = false;
-		for (UserDTO userDTO : userDTOs) {
+		for (UserEntity userDTO : userDTOs) {
 			if(userDTO.getLogin().compareTo(login)==0 && userDTO.getPassw().compareTo(password)==0){
 				authentificationSucced=true;
-				//request.getSession().setAttribute("logedUser", userDTO);
 				userConnectedManagement.setUserDTO(userDTO);
 				
 			}
 		}
 		if(authentificationSucced==false){
 			doGet(request, response);
+		}else{
+			String oldUrl = userConnectedManagement.getAimUrl();
+			response.sendRedirect(oldUrl);
 		}
 	}
 

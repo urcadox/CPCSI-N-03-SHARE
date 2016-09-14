@@ -1,9 +1,9 @@
 package fr.imie;
 
 public interface IUserConnectedManagement {
-	public UserDTO getUserDTO();
+	public UserEntity getUserDTO();
 
-	public void setUserDTO(UserDTO userDTO);
+	public void setUserDTO(UserEntity userDTO);
 
 	String getAimUrl();
 

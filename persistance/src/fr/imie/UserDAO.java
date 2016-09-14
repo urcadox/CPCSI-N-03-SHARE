@@ -20,17 +20,17 @@ public class UserDAO implements IUserDAO, ConnectionSupport {
 	private Connection connection;
 
 	@Override
-	public List<UserDTO> getUsers() throws SQLException {
+	public List<UserEntity> getUsers() throws SQLException {
 
 		Statement statement = null;
 		ResultSet resultSet = null;
-		List<UserDTO> retour = new ArrayList<UserDTO>();
+		List<UserEntity> retour = new ArrayList<UserEntity>();
 
 		statement = connection.createStatement();
 		resultSet = statement.executeQuery("SELECT id,login,mdp FROM personne");
 
 		while (resultSet.next()) {
-			UserDTO personneDTO = buildDTOFromResultset(resultSet);
+			UserEntity personneDTO = buildDTOFromResultset(resultSet);
 			retour.add(personneDTO);
 		}
 
@@ -38,11 +38,11 @@ public class UserDAO implements IUserDAO, ConnectionSupport {
 	}
 
 	@Override
-	public UserDTO addUser(UserDTO userToInsert) throws SQLException {
+	public UserEntity addUser(UserEntity userToInsert) throws SQLException {
 
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
-		UserDTO retour = null;
+		UserEntity retour = null;
 
 		List<ParamJDBC> paramsList = new ArrayList<ParamJDBC>();
 		if (userToInsert.getLogin() != null) {
@@ -80,9 +80,9 @@ public class UserDAO implements IUserDAO, ConnectionSupport {
 
 	}
 
-	private UserDTO buildDTOFromResultset(ResultSet resultSet) throws SQLException {
-		UserDTO retour;
-		retour = new UserDTO();
+	private UserEntity buildDTOFromResultset(ResultSet resultSet) throws SQLException {
+		UserEntity retour;
+		retour = new UserEntity();
 
 		retour.setId(resultSet.getInt("id"));
 		retour.setLogin(resultSet.getString("login"));

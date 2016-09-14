@@ -19,8 +19,8 @@ public class UserService implements IUserService {
 	@Inject IUserDAO userDAO;
 	
 	@Override
-	public List<UserDTO> getAllUsers() {
-		List<UserDTO> retour= null;
+	public List<UserEntity> getAllUsers() {
+		List<UserEntity> retour= null;
 		try {
 			retour= userDAO.getUsers();
 		} catch (SQLException e) {

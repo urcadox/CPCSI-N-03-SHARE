@@ -2,15 +2,23 @@
 
 .tableContainer{
 	display: table;
+	width : 100%;
 }
 
 .tableRow{
 	display: table-row;
+	
+}
+
+.tableRow:HOVER{
+	background-color: grey;
+	color: white;
 }
 
 .tableRow div{
 	display: table-cell;
 	padding: 5px;
+	border-bottom-style: solid;
 }
 
 .logo{
@@ -23,6 +31,13 @@
 	
 }
 
+.verticaleFlexContainer{
+	display: flex;
+	flex-direction : column;
+	height: 100%;
+	
+}
+
 .menuContainer{
 	flex-basis:300px;
 }
@@ -30,6 +45,7 @@
 .generalContainer{
 	flex-grow:1;
 	background-color: silver;
+	color: white;
 }
 
 .asideContainer{
@@ -52,4 +68,31 @@
 
 .clearLink{
 	text-decoration: none;
+}
+
+.containerMarged{
+	margin: 10px
+}
+
+.veryBigText{
+	font-size: 80px;
+}
+.veryBigText input{
+	font-size: 80px;
+}
+
+.veryBigText button{
+	font-size: 80px;
+}
+
+.bigText{
+	font-size: 40px;
+}
+
+.bigText input{
+	font-size: 40px;
+}
+
+.bigText button{
+	font-size: 40px;
 }
