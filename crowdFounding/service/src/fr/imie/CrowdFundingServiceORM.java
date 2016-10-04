@@ -14,7 +14,8 @@ import javax.persistence.PersistenceContext;
 @Regular
 public class CrowdFundingServiceORM implements ICrowdFundingService {
 
-	private @PersistenceContext EntityManager entityManager;
+	@PersistenceContext
+	private EntityManager entityManager;
 
 	@Override
 	public List<CrowdFundingEntity> getAllCrowdFunfingDTO() {
@@ -32,8 +33,8 @@ public class CrowdFundingServiceORM implements ICrowdFundingService {
 		for (DonEntity donEntity : crowdFundingEntity.getDons()) {
 			aim-= donEntity.getValue();
 		}
-		crowdFundingEntity.getDons();
 		crowdFundingEntity.setAim(aim);
+		crowdFundingEntity.getDons();
 		
 	}
 
