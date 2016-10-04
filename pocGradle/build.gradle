@@ -1,0 +1,19 @@
+task(boucleTask).doLast{
+	for (int i:[1,2,3]){
+		print i
+	}
+}
+
+void printMessage(String message){
+	println "Print " + message
+}
+
+task(distribution).doLast {
+	printMessage("Distribution")
+}
+
+task(release)
+release.dependsOn(distribution)
+release.doLast{
+	println "Print Release"
+}
