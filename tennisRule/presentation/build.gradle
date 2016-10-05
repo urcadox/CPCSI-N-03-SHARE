@@ -4,6 +4,7 @@ apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'eclipse-wtp'
 apply plugin: 'eclipse'
+apply plugin: 'com.github.nikit.cpp.wildfly.deploy'
 
 sourceCompatibility = 1.8
 
@@ -44,4 +45,17 @@ test.ignoreFailures=true
 test{
     outputs.upToDateWhen { false }
 }
+
+deployConfig {
+    deployFile = "scripts/deploy" // list of files to deploy
+    jbossHome = "/opt/wildfly/"
+    boxes = [
+        'Local' : [
+            wildfly:new helpers.Server()
+        ]
+    ]
+}
+
+test.dependsOn deployLocal
+deployLocal.dependsOn undeployLocal
 
