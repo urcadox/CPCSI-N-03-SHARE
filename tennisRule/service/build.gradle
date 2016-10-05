@@ -1,15 +1,14 @@
-apply plugin:'java'
+apply plugin: 'java'
 apply plugin: 'eclipse'
+sourceCompatibility = 1.8
 
 version = '1.0.0-SNAPSHOT'
 group='imie'
 
+
+
 repositories {
 	mavenCentral()
-}
-
-test{
-    outputs.upToDateWhen { false }
 }
 
 jar {
@@ -18,8 +17,15 @@ jar {
 	}
 }
 
+test{
+    outputs.upToDateWhen { false }
+}
+
 dependencies{
 	testCompile group:'junit', name:'junit', version:'4.12'
-	testCompile group:'org.mockito', name: 'mockito-core', version: '2.+'
+	testCompile 'org.mockito:mockito-core:2.+'
+  	compile 'javax:javaee-api:7.0'
 }
+
+
 

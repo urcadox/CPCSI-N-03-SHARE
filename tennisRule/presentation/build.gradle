@@ -7,10 +7,25 @@ apply plugin: 'eclipse'
 
 sourceCompatibility = 1.8
 
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+        maven {
+            url 'https://dl.bintray.com/nikit007/mvn-repo/'
+        }
+
+    }
+    dependencies {
+        classpath "gradle.plugin.com.github.nikit.cpp:wildflyDeployPlugin:1.0.8"
+    }
+}
+
+
 repositories {
     mavenCentral()
 }
-
 	
 war {
  from 'WebContent' 
