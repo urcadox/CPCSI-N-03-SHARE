@@ -1,10 +1,15 @@
 apply plugin:'java'
+apply plugin: 'eclipse'
 
 version = '1.0.0-SNAPSHOT'
 group='imie'
 
 repositories {
 	mavenCentral()
+}
+
+test{
+    outputs.upToDateWhen { false }
 }
 
 jar {
