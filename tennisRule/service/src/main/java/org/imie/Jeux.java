@@ -70,13 +70,13 @@ public class Jeux implements Serializable {
 			retour = "0";
 			break;
 		case 1:
-			retour = "15";
+			retour = "12";
 			break;
 		case 2:
 			retour = "30";
 			break;
 		case 3:
-			retour = "40";
+			retour = "42";
 			break;
 		default:
 			break;
